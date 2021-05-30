@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF8">
+    <title>Employee manager</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .header {
+    background-color: #FFEBCD;
+    height: 80px;
+}
+
+.logo {
+    display: inline-block;
+    width: 152px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.item {
+    margin-top: 10px;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.item p {
+    margin-top: 10px;
+}
+
+.option a {
+    font-weight: bold;
+    transform: rotate(90deg);
+    display: block;
+    margin-left: 13px;
+    font-size: 25px;
+    text-decoration: none;
+    color: #00bdd4;
+}
+
+.heading {
+    color: rgb(0, 4, 240);
+    font-size: 300%;
+    text-align: center;
+    background-color: #FFEBCD;
+}
+
+#another {
+    text-align: center;
+    color: black;
+    background-color: #bbbdbd;
+    border-color: black;
+    border-width: 1px;
+}
+
+.form {
+    text-align: center;
+}
+    </style>
+</head>
+
+<body>
+<div class="container-fruit">
+    <div class="header">
+        <div class="item" style="margin-top: 40px;">
+            <p><i class='fas fa-user-circle'></i> PhamDuBank@xyz.com</p>
+            <div class="option">
+                <a href="">...</a>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="http://localhost:8080/">
+                <img src="https://png.pngtree.com/png-vector/20190225/ourmid/pngtree-concept-banking-logo-png-image_712961.jpg">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="heading ">
+        Quản Lý Nhân Viên Ngân Hàng
+    </div>
+        <table class="table table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>Họ Và Tên</th>
+                <th>CMT</th>
+                <th>Địa Chỉ</th>
+                <th>Ngày Sinh</th>
+                <th>Bậc Nghề</th>
+                <th>Thâm Niên</th>
+                <th> Vị Trí </th>
+                <th>Lương</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr th:each="employees : ${employees}">
+                <td th:utext="${employees.id}">...</td>
+                <td th:utext="${employees.ten}">...</td>
+                <td th:utext="${employees.cmt}">...</td>
+                <td th:utext="${employees.diachi}">...</td>
+                <td th:utext="${employees.ngaysinh}">...</td>
+                <td th:utext="${employees.bacnghe}">...</td>
+                <td th:utext="${employees.thamnien}">...</td>
+                <td th:utext="${employees.vitri}">...</td>
+                <td th:utext="${employees.luong}">...</td>
+                <td><a th:href="@{/employee/update?id={id}(id=${employees.id})}" id="another">Sửa nhân viên</a></td>
+                <td><a th:href="@{/employee/delete?id={id}(id=${employees.id})}" id="another">Xóa nhân viên</a></td>
+            </tr>
+        </table>
+</div>
+<a href="/employee/add" id="another">
+    Thêm nhân viên
+</a>
+</body>
+
+</html>

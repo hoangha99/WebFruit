@@ -1,33 +1,40 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: header"/>
+<body style="background: url(/images/bg.jpg) no-repeat center center fixed;height: 100%">
+<section>
 
-<h1>Login</h1>
-
-<h3>Enter user name and password:</h3>
-<form name='f' th:action="@{/login}" method='POST'>
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td>Remember Me?</td>
-            <td><input type="checkbox" name="remember-me" /></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
-</form>
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4" style="margin-top: 20%;">
+                <div class="login-wrap p-0">
+                    <div th:if="${#request.getParameter('error') == 'true'}" style="color:red;margin:10px 0px;">Login Failed</div>
+                    <form name="f" th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" name="password" type="password" class="form-control" placeholder="Password"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                        </div>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label for="remember-me" class="checkbox-wrap checkbox-primary">Remember Me
+                                    <input id="remember-me" name="remember-me" type="checkbox" checked>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a th:href="@{/register}" style="color: #ffffff">Register</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
-
 </html>
